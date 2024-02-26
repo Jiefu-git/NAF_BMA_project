@@ -21,13 +21,6 @@ def oper(array,oper,axis=-1,keepdims=False):
     return a_oper
 
 
-c = - 0.5 * torch.log(2*pi_tensor)
-
-
-def log_normal(x, mean, log_var, eps=0.00001):
-    return - (x-mean) ** 2 / (2. * torch.exp(log_var) + eps) - log_var/2. + c
-
-
 def log_sum_exp(A, axis=-1, sum_op=torch.sum):
     maximum = lambda x: x.max(axis)[0]
     A_max = oper(A,maximum,axis,True)
@@ -92,6 +85,20 @@ def sum_from_one(x):
         return sum_from_one(sum1(x))
     else:
         return sum1(x)
+
+
+
+c = - 0.5 * torch.log(2*pi_tensor)
+
+def log_normal(x, mean, log_var, eps=0.00001):
+    return - (x-mean) ** 2 / (2. * torch.exp(log_var) + eps) - log_var/2. + c
+
+
+def log_logNormal(x, mean, log_var, eps=0.000001):
+    return - (torch.log(x)-mean) ** 2 / (2. * torch.exp(log_var) + eps) - torch.log(x) - log_var/2. + c
+
+
+
 
 
 

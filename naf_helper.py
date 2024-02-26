@@ -184,7 +184,7 @@ def log_prob_z0(z0):
     return log_likelihoods
 
 
-# ELBO function for a fixed model
+# ELBO function for a fixed linear regression model
 def elbo(param, X, Y):
     rho = param[:, 0]
     beta = param[:, 1:]
